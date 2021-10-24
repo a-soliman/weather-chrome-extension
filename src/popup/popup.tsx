@@ -1,20 +1,21 @@
-import './styles.scss';
+import './popup.scss';
+import 'fontsource-roboto';
 
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactDom from 'react-dom';
 
-import { fetchOpenWeatherData } from '../utils/api';
+import { WeatherCard } from './WeatherCard/WeatherCard';
 
 const App: React.FC<{}> = (): JSX.Element => {
-  useEffect(() => {
-    fetchOpenWeatherData('San Francisco')
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err));
-  }, []);
-
+  const [cities, setCities] = useState<string[]>([
+    'San Francisco',
+    'not real city',
+  ]);
   return (
     <>
-      <img src="./icon.png" alt="" />
+      {cities.map((city, idx) => (
+        <WeatherCard key={idx} city={city} />
+      ))}
     </>
   );
 };

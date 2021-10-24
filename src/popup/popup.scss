@@ -1,5 +1,8 @@
 @import '../sass/variables';
+@import '../sass/typography';
 
 body {
   background-color: $mainColor;
+  width: 320px;
+  height: 512px;
 }
