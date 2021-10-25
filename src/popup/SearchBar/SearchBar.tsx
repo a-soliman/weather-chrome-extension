@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 
-import { Box, Grid, IconButton, InputBase, Paper } from '@material-ui/core';
+import { Box, Card, Grid, IconButton, InputBase } from '@material-ui/core';
 import { Add as AddIcon } from '@material-ui/icons';
 
 interface SearchBarProps {
   addClickHandler: (string) => void;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({
-  addClickHandler,
-}): JSX.Element => {
+export const SearchBar: React.FC<SearchBarProps> = ({ addClickHandler }): JSX.Element => {
   const [input, setInput] = useState('');
 
-  function handleInputChange(
-    evt: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ): void {
+  function handleInputChange(evt: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void {
     setInput(evt.target.value);
   }
 
@@ -24,22 +20,19 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   }
 
   return (
-    <Grid container>
-      <Grid item={true}>
-        <Paper>
-          <Box px="15px" py="5px">
-            <InputBase
-              value={input}
-              onChange={handleInputChange}
-              placeholder="add a city name"
-              fullWidth={true}
-            />
+    <Card>
+      <Box px="15px" py="5px">
+        <Grid container={true} wrap="nowrap">
+          <Grid item xs={10}>
+            <InputBase value={input} onChange={handleInputChange} placeholder="add a city name" fullWidth={true} />
+          </Grid>
+          <Grid item={true} xs={2}>
             <IconButton onClick={handleAddButtonClick} disabled={input === ''}>
               <AddIcon />
             </IconButton>
-          </Box>
-        </Paper>
-      </Grid>
-    </Grid>
+          </Grid>
+        </Grid>
+      </Box>
+    </Card>
   );
 };
