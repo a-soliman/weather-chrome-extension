@@ -8,12 +8,14 @@ import { WeatherCardContainer } from './WeatherCardContainer';
 
 interface WeatherCardProps {
   city: string;
+  onDelete?: () => void;
 }
 
 type WeatherCardState = 'loading' | 'error' | 'ready';
 
 export const WeatherCard: React.FC<WeatherCardProps> = ({
   city,
+  onDelete,
 }): JSX.Element => {
   const [cardState, setCardState] = useState<WeatherCardState>('loading');
   const [weatherData, setWeatherData] =
@@ -48,7 +50,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
   const temp = round(weatherData.main.temp);
   const feelsLike = round(weatherData.main.feelsLike);
   return (
-    <WeatherCardContainer>
+    <WeatherCardContainer onDelete={onDelete}>
       <Typography variant="h5">{weatherData.name}</Typography>
       <Typography variant="body1">{temp}</Typography>
       <Typography variant="body1">Feels like: {feelsLike}</Typography>
