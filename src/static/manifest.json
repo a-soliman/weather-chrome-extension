@@ -8,6 +8,7 @@
     "48": "icon.png",
     "128": "icon.png"
   },
+  "permissions": ["storage"],
   "action": {
     "default_popup": "popup.html",
     "default_title": "Weather Extension",
