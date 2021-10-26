@@ -1,0 +1,12 @@
+@import '../sass/variables';
+@import '../sass/typography';
+
+.overlayCard {
+  position: fixed;
+  left: 5%;
+  top: 15%;
+  max-width: 240px;
+  max-height: 240px;
+  background-color: $mainColor !important;
+  z-index: 99999;
+}

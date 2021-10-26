@@ -8,7 +8,7 @@ import { Box, Grid, Card, Paper } from '@material-ui/core';
 
 import { getStoredCities, getStoredOptions, setStoredOptions, LocalStorageOptions, setStoredCities } from '../utils/storage';
 import { SearchBar } from './SearchBar/SearchBar';
-import { WeatherCard } from './WeatherCard/WeatherCard';
+import { WeatherCard } from '../components/WeatherCard/WeatherCard';
 import { TempScaleToggler } from './TempScaleToggler/TempScaleToggler';
 
 const App: React.FC<{}> = (): JSX.Element => {

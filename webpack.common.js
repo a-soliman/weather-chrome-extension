@@ -9,8 +9,7 @@ module.exports = {
     popup: path.resolve(__dirname, 'src/popup/popup.tsx'),
     options: path.resolve(__dirname, 'src/options/options.tsx'),
     background: path.resolve(__dirname, 'src/background/background.ts'),
-    contentScript: path.resolve(__dirname,'src/contentScript/contentScript.ts'
-    ),
+    contentScript: path.resolve(__dirname, 'src/contentScript/contentScript.tsx'),
   },
   module: {
     rules: [
@@ -63,7 +62,9 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      chunks(chunk) {
+        return chunk.name !== 'contentScript';
+      },
     },
   },
 };

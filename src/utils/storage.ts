@@ -6,6 +6,7 @@ export interface LocalStorage {
 }
 
 export interface LocalStorageOptions {
+  overlay: boolean;
   homeCity: string;
   tempScale: OpenWeather.TempScale;
 }

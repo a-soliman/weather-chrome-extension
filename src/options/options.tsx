@@ -4,7 +4,7 @@ import './options.scss';
 import React, { useEffect, useState } from 'react';
 import ReactDom from 'react-dom';
 
-import { Box, Button, Card, CardContent, Grid, TextField, Typography } from '@material-ui/core';
+import { Box, Button, Card, CardContent, Grid, TextField, Typography, Switch } from '@material-ui/core';
 
 import { getStoredOptions, LocalStorageOptions, setStoredOptions } from '../utils/storage';
 
@@ -23,6 +23,12 @@ const App: React.FC<{}> = () => {
 
   const handleHomeCityInputChange = (evt: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     const updatedOptions = { ...options, homeCity: evt.target.value };
+    setOptions(updatedOptions);
+    setFormState('dirty');
+  };
+
+  const handleOverlayChange = (evt: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    const updatedOptions = { ...options, overlay: !options.overlay };
     setOptions(updatedOptions);
     setFormState('dirty');
   };
@@ -46,6 +52,10 @@ const App: React.FC<{}> = () => {
             <Grid item>
               <Typography variant="body1">Home city name</Typography>
               <TextField fullWidth placeholder="Enter a home city name" value={options.homeCity} onChange={handleHomeCityInputChange} />
+            </Grid>
+            <Grid item>
+              <Typography variant="body1">Auto Overlay</Typography>
+              <Switch disabled={options.homeCity === ''} checked={options.overlay} onChange={handleOverlayChange} />
             </Grid>
             <Grid item>
               <Button variant="contained" color="primary" disabled={formState !== 'dirty'} onClick={handleSaveButtonClick}>
