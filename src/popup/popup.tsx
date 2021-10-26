@@ -50,11 +50,12 @@ const App: React.FC<{}> = (): JSX.Element => {
         <Box px="15px" py="5px">
           <Grid container wrap="nowrap" justifyContent="space-between">
             <SearchBar addClickHandler={handleAddCity} />
-            {options && <TempScaleToggler tempScale={options.tempScale} onToggle={handleTempScaleToggle} />}
+            {options.tempScale && <TempScaleToggler tempScale={options.tempScale} onToggle={handleTempScaleToggle} />}
           </Grid>
         </Box>
       </Paper>
 
+      {options.homeCity !== '' && <WeatherCard city={options.homeCity} tempScale={options.tempScale} />}
       {cities.length
         ? cities.map((city, idx) => (
             <WeatherCard

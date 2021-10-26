@@ -2,7 +2,7 @@ import { setStoredCities, setStoredOptions } from '../utils/storage';
 
 const initializerFunc = (): void => {
   setStoredCities([]);
-  setStoredOptions({ tempScale: 'metric' });
+  setStoredOptions({ homeCity: '', tempScale: 'metric' });
 };
 
 chrome.runtime.onInstalled.addListener(() => {
