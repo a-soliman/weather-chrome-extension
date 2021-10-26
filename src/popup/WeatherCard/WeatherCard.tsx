@@ -8,21 +8,18 @@ import { WeatherCardContainer } from './WeatherCardContainer';
 
 interface WeatherCardProps {
   city: string;
+  tempScale: OpenWeather.TempScale;
   onDelete?: () => void;
 }
 
 type WeatherCardState = 'loading' | 'error' | 'ready';
 
-export const WeatherCard: React.FC<WeatherCardProps> = ({
-  city,
-  onDelete,
-}): JSX.Element => {
+export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onDelete, tempScale }): JSX.Element => {
   const [cardState, setCardState] = useState<WeatherCardState>('loading');
-  const [weatherData, setWeatherData] =
-    useState<OpenWeather.OpenWeatherResponse | null>(null);
+  const [weatherData, setWeatherData] = useState<OpenWeather.OpenWeatherResponse | null>(null);
   useEffect(() => {
     setCardState('loading');
-    fetchOpenWeatherData(city)
+    fetchOpenWeatherData(city, tempScale)
       .then((data) => {
         setWeatherData(data);
         setCardState('ready');
@@ -31,15 +28,12 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
         console.error(err);
         setCardState('error');
       });
-  }, [city]);
+  }, [city, tempScale]);
 
   const round = (input: number): number => Math.round(input);
 
   if (['loading', 'error'].includes(cardState)) {
-    const message =
-      cardState === 'loading'
-        ? 'Loading...'
-        : `Error: Could not retrieve weather data for ${city}`;
+    const message = cardState === 'loading' ? 'Loading...' : `Error: Could not retrieve weather data for ${city}`;
     return (
       <WeatherCardContainer>
         <Typography variant="body1">{message}</Typography>

@@ -1,4 +1,5 @@
 export module OpenWeather {
+  export type TempScale = 'metric' | 'imperial';
   export interface OpenWeatherResponse {
     name: string;
     weather: {
