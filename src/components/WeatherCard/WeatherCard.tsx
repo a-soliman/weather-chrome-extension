@@ -37,7 +37,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onDelete, tempSc
   if (['loading', 'error'].includes(cardState)) {
     const message = cardState === 'loading' ? 'Loading...' : `Error: Could not retrieve weather data for this city.`;
     return (
-      <WeatherCardContainer>
+      <WeatherCardContainer  onDelete={onDelete}>
         <Typography className="weatherCard-title">{city}</Typography>
         <Typography className="weatherCard-body">{message}</Typography>
       </WeatherCardContainer>
