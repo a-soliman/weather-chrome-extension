@@ -7,6 +7,7 @@ import ReactDom from 'react-dom';
 import { Box, Button, Card, CardContent, Grid, TextField, Typography, Switch } from '@material-ui/core';
 
 import { getStoredOptions, LocalStorageOptions, setStoredOptions } from '../utils/storage';
+import { Messages } from '../utils/messages';
 
 type FormState = 'ready' | 'loading' | 'dirty';
 
@@ -36,6 +37,7 @@ const App: React.FC<{}> = () => {
   const handleSaveButtonClick = async (): Promise<void> => {
     setFormState('loading');
     await setStoredOptions(options);
+    chrome.runtime.sendMessage(Messages.homeCityUpdated);
     setFormState('ready');
   };
 
