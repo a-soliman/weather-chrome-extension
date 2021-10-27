@@ -6,4 +6,10 @@
 
 .weatherCard-body {
   @extend .text-body;
+  @extend .text-center;
+}
+
+.weatherCard-temp {
+  @extend .text-large;
+  @extend .text-center;
 }

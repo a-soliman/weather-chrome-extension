@@ -2,10 +2,18 @@ body {
   font-family: 'Roboto';
 }
 
+.text-large {
+  font-size: 46px !important;
+}
+
 .text-title {
   font-size: 24px !important;
 }
 
 .text-body {
   font-size: 16px !important;
+}
+
+.text-center {
+  text-align: center !important;
 }

@@ -11,3 +11,7 @@ export async function fetchOpenWeatherData(city: string, tempScale: OpenWeather.
 
   return new OpenWeather.OpenWeatherData(resJson).values;
 }
+
+export function getWeatherIconSrc(iconCode: string): string {
+  return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+}
