@@ -1,0 +1,9 @@
+@import '../../sass/typography';
+
+.weatherCard-title {
+  @extend .text-title;
+}
+
+.weatherCard-body {
+  @extend .text-body;
+}

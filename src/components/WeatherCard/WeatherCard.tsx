@@ -6,6 +6,8 @@ import { fetchOpenWeatherData } from '../../utils/api';
 import { OpenWeather } from '../../utils/OpenWeather';
 import { WeatherCardContainer } from './WeatherCardContainer';
 
+import './WeatherCard.scss';
+
 interface WeatherCardProps {
   city: string;
   tempScale: OpenWeather.TempScale;
@@ -33,10 +35,11 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onDelete, tempSc
   const round = (input: number): number => Math.round(input);
 
   if (['loading', 'error'].includes(cardState)) {
-    const message = cardState === 'loading' ? 'Loading...' : `Error: Could not retrieve weather data for ${city}`;
+    const message = cardState === 'loading' ? 'Loading...' : `Error: Could not retrieve weather data for this city.`;
     return (
       <WeatherCardContainer>
-        <Typography variant="body1">{message}</Typography>
+        <Typography className="weatherCard-title">{city}</Typography>
+        <Typography className="weatherCard-body">{message}</Typography>
       </WeatherCardContainer>
     );
   }
@@ -45,9 +48,9 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onDelete, tempSc
   const feelsLike = round(weatherData.main.feelsLike);
   return (
     <WeatherCardContainer onDelete={onDelete}>
-      <Typography variant="h5">{weatherData.name}</Typography>
-      <Typography variant="body1">{temp}</Typography>
-      <Typography variant="body1">Feels like: {feelsLike}</Typography>
+      <Typography className="weatherCard-title">{weatherData.name}</Typography>
+      <Typography className="weatherCard-body">{temp}</Typography>
+      <Typography className="weatherCard-body">Feels like: {feelsLike}</Typography>
     </WeatherCardContainer>
   );
 };

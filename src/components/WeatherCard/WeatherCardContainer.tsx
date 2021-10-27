@@ -1,6 +1,6 @@
 import React from 'react';
-
-import { Box, Button, Card, CardActions, CardContent } from '@material-ui/core';
+import { Box, Button, Card, CardActions, CardContent, Typography } from '@material-ui/core';
+import './WeatherCard.scss';
 
 interface WeatherCardContainerProps {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ export const WeatherCardContainer: React.FC<WeatherCardContainerProps> = ({ chil
         {onDelete && (
           <CardActions>
             <Button onClick={onDelete} color="secondary">
-              Delete
+              <Typography className="weatherCard-body">Delete</Typography>
             </Button>
           </CardActions>
         )}

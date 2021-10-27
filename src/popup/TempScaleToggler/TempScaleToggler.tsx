@@ -13,7 +13,7 @@ const IMPERIAL_UNICODE = '\u2109';
 
 export const TempScaleToggler: React.FC<TempScaleTogglerProps> = ({ tempScale, onToggle }): JSX.Element => {
   return (
-    <Grid item xs={2}>
+    <Grid item>
       <Paper>
         <IconButton onClick={onToggle}>{tempScale === 'metric' ? METRIC_UNICODE : IMPERIAL_UNICODE}</IconButton>
       </Paper>

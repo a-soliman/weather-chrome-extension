@@ -4,12 +4,14 @@ import 'fontsource-roboto';
 import React, { useEffect, useState } from 'react';
 import ReactDom from 'react-dom';
 
-import { Box, Grid, Card, Paper } from '@material-ui/core';
+import { Box, Grid, Paper } from '@material-ui/core';
 
 import { getStoredCities, getStoredOptions, setStoredOptions, LocalStorageOptions, setStoredCities } from '../utils/storage';
+import { Messages } from '../utils/messages';
 import { SearchBar } from './SearchBar/SearchBar';
 import { WeatherCard } from '../components/WeatherCard/WeatherCard';
 import { TempScaleToggler } from './TempScaleToggler/TempScaleToggler';
+import { OverlayController } from './OverlayController/OverlayController';
 
 const App: React.FC<{}> = (): JSX.Element => {
   const [cities, setCities] = useState<string[]>([]);
@@ -42,6 +44,15 @@ const App: React.FC<{}> = (): JSX.Element => {
     setStoredOptions(updatedOptions);
   };
 
+  const handleOverlayToggleOnCurrentTab = (): void => {
+    chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+      if (tabs.length > 0) {
+        console.log(tabs[0].id);
+        chrome.tabs.sendMessage(tabs[0].id, Messages.TOGGLE_OVERLAY);
+      }
+    });
+  };
+
   if (!options) return null; // maybe a loader...
 
   return (
@@ -51,6 +62,7 @@ const App: React.FC<{}> = (): JSX.Element => {
           <Grid container wrap="nowrap" justifyContent="space-between">
             <SearchBar addClickHandler={handleAddCity} />
             {options.tempScale && <TempScaleToggler tempScale={options.tempScale} onToggle={handleTempScaleToggle} />}
+            <OverlayController isActive={options.overlay} onToggle={handleOverlayToggleOnCurrentTab} />
           </Grid>
         </Box>
       </Paper>

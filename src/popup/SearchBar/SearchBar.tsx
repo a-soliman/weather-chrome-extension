@@ -21,10 +21,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({ addClickHandler }): JSX.El
 
   return (
     <>
-      <Grid item={true} xs={8}>
+      <Grid item>
         <InputBase value={input} onChange={handleInputChange} placeholder="add a city name" fullWidth={true} />
       </Grid>
-      <Grid item={true} xs={2}>
+      <Grid item>
         <IconButton onClick={handleAddButtonClick} disabled={input === ''}>
           <AddIcon />
         </IconButton>
